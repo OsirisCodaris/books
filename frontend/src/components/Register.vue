@@ -143,7 +143,9 @@ export default {
 			if(this.statePassword && this.stateConfirm){
 				try{
           const resp = (await AuthentificationServices.register(this.form)).data
-					this.message = "Utilisateur enregistré avec succès!"
+          this.message = "Utilisateur enregistré avec succès!"
+          this.$store.dispatch('setToken', resp.token)
+          this.$store.dispatch('setUser', resp.user)
 				}catch(error){
 					this.error = error.response.data.message
 				}

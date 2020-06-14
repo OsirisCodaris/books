@@ -92,7 +92,11 @@ export default {
 			this.error = false
       try{
         const resp = (await AuthentificationServices.login(this.form)).data
-        this.message = "Utilisateur enregistré avec succès!"
+        this.$store.dispatch('setToken', resp.token)
+        this.$store.dispatch('setUser', resp.user)
+        this.$router.push({
+          name: "book"
+        })
       }catch(error){
         this.error = error.response.data.message
       }
