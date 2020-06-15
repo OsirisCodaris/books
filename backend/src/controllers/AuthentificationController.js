@@ -13,20 +13,32 @@ module.exports = {
   async register (req, res) {
     try {
       console.log(req.body)
+      const fullnameExist = await User.findOne({
+        where: {
+          fullname: req.body.fullname
+        }
+      })
+      if (fullnameExist) {
+        return res.status(400).send({
+          message: 'Ce nom d\'utilisateur existe déjà'
+        })
+      }
       const user = await User.create(req.body)
-      res.send(user.toJSON())
+      return res.send({
+        user: user.id
+      })
     } catch (err) {
-      res.status(400).send({
+      return res.status(400).send({
         message: 'l\'email existe déjà !'
       })
     }
   },
   async login (req, res) {
     try {
-      const { email, password } = req.body
+      const { fullname, password } = req.body
       const user = await User.findOne({
         where: {
-          email: email
+          fullname: fullname
         }
       })
       if (!user) {
@@ -37,12 +49,11 @@ module.exports = {
       const isValidPassword = await user.comparePassword(password)
       if (!isValidPassword) {
         return res.status(403).send({
-          message: 'Les informations envoyées sont incorrects' + isValidPassword
+          message: 'Les informations envoyées sont incorrects'
         })
       }
       const userJson = user.toJSON()
       res.send({
-        user: userJson,
         token: jwtSignUser(userJson)
       })
     } catch (err) {
