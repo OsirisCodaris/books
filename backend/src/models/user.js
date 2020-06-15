@@ -13,12 +13,28 @@ async function hashPassword (user, options) {
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    fullname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
     email: {
+      allowNull: false,
       type: DataTypes.STRING,
       unique: true
     },
-    password: DataTypes.STRING,
-    isadmin: DataTypes.BOOLEAN
+    phone1: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    phone2: {
+      allowNull: true,
+      type: DataTypes.STRING
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     hooks: {
       beforeCreate: hashPassword,
@@ -33,9 +49,15 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     User.belongsToMany(models.Book, {
       through: 'view_book',
-      as: 'users',
+      as: 'userSee',
       foreignKey: 'user_id'
     })
+    User.belongsToMany(models.Book, {
+      through: 'sell_book',
+      as: 'userBuy',
+      foreignKey: 'user_id'
+    })
+    User.hasOne(models.Subscription)
   }
   return User
 }

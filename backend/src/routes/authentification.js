@@ -8,5 +8,5 @@ router.route('/register')
   .post(AuthentificationControllerPolicy.register, AuthentificationController.register)
 
 router.route('/login')
-  .post(AuthentificationControllerPolicy.register, AuthentificationController.login)
+  .post(AuthentificationController.login)
 module.exports = router
