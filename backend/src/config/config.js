@@ -11,5 +11,9 @@ module.exports = {
   },
   authentification: {
     jwtSecret: process.env.JWT_SECRET || 'secret'
+  },
+  book: {
+    defaultCover: 'cover.png',
+    path: 'public/bookpath'
   }
 }

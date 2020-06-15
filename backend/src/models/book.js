@@ -1,14 +1,16 @@
 'use strict'
+const config = require('../config/config')
 module.exports = (sequelize, DataTypes) => {
   const Book = sequelize.define('Book', {
     title: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false
     },
     cover: {
       type: DataTypes.STRING,
-      unique: true,
-      allowNull: false
+      allowNull: false,
+      defaultValue: config.book.defaultCover
     },
     file: {
       type: DataTypes.STRING,
