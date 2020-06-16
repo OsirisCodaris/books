@@ -18,10 +18,20 @@ var upload = multer({
   },
   fileFilter: function (req, file, callback) {
     var ext = path.extname(file.originalname)
-    if (ext !== '.pdf' && ext !== '.png' && ext !== '.jpeg' && ext !== '.jpg') {
-      callback(new Error('Seul les extensions jpg, jpeg, png et pdf sont acceptées'))
+    if (file.fieldname === 'cover') {
+      if (ext !== '.png' && ext !== '.jpeg' && ext !== '.jpg') {
+        callback(new Error('Seulement les extensions jpg, jpeg, png sont acceptées comme image de couverture'))
+      } else {
+        callback(null, true)
+      }
+    } else if (file.fieldname === 'file') {
+      if (ext !== '.pdf') {
+        callback(new Error('Seule l\'extension pdf est acceptées comme document'))
+      } else {
+        callback(null, true)
+      }
     } else {
-      callback(null, true)
+      callback(new Error('fichier non reconnu'))
     }
   }
 })
