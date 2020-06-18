@@ -15,6 +15,46 @@
 					class="col-12"
 					>
 						<b-form-group
+							id="input-group-6"
+							label="Nom complet :"
+							label-for="input-1"
+						>
+							<b-form-input
+								id="input-6"
+								type="text"
+								v-model="form.fullname"
+								required
+								placeholder="Entrez votre nom complet"
+							></b-form-input>
+						</b-form-group>
+
+						<b-form-group
+							id="input-group-5"
+							label="Numéro de téléphone principal :"
+							label-for="input-1"
+						>
+							<b-form-input
+								id="input-5"
+								v-model="form.phone1"
+								required
+								placeholder="Entrez votre numéro 1"
+							></b-form-input>
+						</b-form-group>
+
+						<b-form-group
+							id="input-group-4"
+							label="Numéro de téléphone 2 (facultatif) :"
+							label-for="input-1"
+						>
+							<b-form-input
+								id="input-4"
+								type="number"
+								v-model="form.phone2"
+								placeholder="Entrez votre numéro 2"
+							></b-form-input>
+						</b-form-group>
+
+						<b-form-group
 							id="input-group-1"
 							label="Adresse mail:"
 							label-for="input-1"
@@ -59,15 +99,7 @@
 								placeholder="Entrez à nouveau le mot de passe"
 							></b-form-input>
 						</b-form-group>
-            <b-form-inline
-              id="input-4"
-            >
-              <b-form-checkbox
-                switch
-                v-model="form.isadmin">
-                est un admin ?
-                </b-form-checkbox>
-            </b-form-inline>
+            
 						<b-alert 
 							show 
 							dismissible 
@@ -85,7 +117,7 @@
 						</b-alert>
 						<div class="text-center">
 							<b-button
-							type ="submit" 
+							type="submit" 
 							pill 
 							variant="primary"
 							align="center"
@@ -106,9 +138,11 @@ export default {
 	data () {
 		return {
 			form : {
+				fullname : "",
+				phone1 : "",
+				phone2 : "",
 				email : "",
-        password :"",
-        isadmin : false
+				password :""
 			},
 			confirm : "",
 			error :"",

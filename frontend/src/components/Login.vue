@@ -16,15 +16,15 @@
 					>
 						<b-form-group
 							id="input-group-1"
-							label="Adresse mail:"
+							label="Nom complet:"
 							label-for="input-1"
 						>
 							<b-form-input
 								id="input-1"
-								type="email"
-								v-model="form.email"
+								type="text"
+								v-model="form.fullname"
 								required
-								placeholder="Entrez votre email"
+								placeholder="Entrez votre nom complet"
 							></b-form-input>
 						</b-form-group>
 						<b-form-group
@@ -57,7 +57,7 @@
 						</b-alert>
 						<div class="text-center">
 							<b-button
-							type ="submit" 
+							type="submit" 
 							pill 
 							variant="primary"
 							align="center"
@@ -78,8 +78,8 @@ export default {
 	data () {
 		return {
 			form : {
-				email : "",
-        password :""
+				fullname : "",
+        		password :""
 			},
 			error :"",
 			message : false
