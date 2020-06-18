@@ -53,7 +53,11 @@ module.exports = {
         })
       }
       const userJson = user.toJSON()
+      // on vérifie si l'utilisateur est abonnée
+      const userSub = await user.getSubscription()
+      const subEnd = userSub ? userSub.finishedAt : false
       res.send({
+        subsciptEnd: subEnd,
         token: jwtSignUser(userJson)
       })
     } catch (err) {

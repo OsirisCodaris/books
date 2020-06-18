@@ -25,12 +25,12 @@ module.exports = (sequelize, DataTypes) => {
   Book.associate = function (models) {
     // associations can be defined here
     Book.belongsToMany(models.User, {
-      through: 'view_book',
+      through: 'viewBook',
       as: 'bookRead',
       foreignKey: 'book_id'
     })
     Book.belongsToMany(models.User, {
-      through: 'sell_book',
+      through: 'sellBook',
       as: 'bookSell',
       foreignKey: 'book_id'
     })
