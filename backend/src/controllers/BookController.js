@@ -51,7 +51,7 @@ module.exports = {
   async show (req, res) {
     try {
       const book = await Book.findByPk(req.params.id)
-      if (book) {
+      if (book.price) {
         // on verifie si l'utilisateur a le droit de lire le document
         const user = req.user
         const userHasSubscribe = user.Subscription.expiredDate() // true si l'utilisateur est a un abonnement valide
@@ -63,7 +63,7 @@ module.exports = {
           })
         }
         // enregistre la lecture de l'utilisateur
-        await book.addBookRead(req.user)
+        await book.addBookRead(user)
       }
       return res.send(book.toJSON())
     } catch (error) {

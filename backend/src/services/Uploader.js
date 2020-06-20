@@ -17,11 +17,11 @@ module.exports = {
           break
         case error.fileSize:
           res.status(400).send({
-            message: 'La taille du fichier est trop grande (taille autorisée < 10 MB)'
+            message: 'La taille du fichier est trop grande (taille autorisée < 20 MB)'
           })
           break
         default:
-          res.status(400).send({
+          res.status(500).send({
             message: 'Une erreur s\'est produite lors du transfert des fichiers'
           })
           break

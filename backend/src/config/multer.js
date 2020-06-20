@@ -14,7 +14,7 @@ var upload = multer({
   storage: storage,
   limits: {
     files: 2, // allow up to 5 files per request,
-    fileSize: 200 * 1024 * 1024 // 10 MB (max file size)
+    fileSize: 200 * 1024 * 1024 // 20 MB (max file size)
   },
   fileFilter: function (req, file, callback) {
     var ext = path.extname(file.originalname)

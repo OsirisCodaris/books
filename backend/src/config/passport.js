@@ -1,10 +1,10 @@
 const passport = require('passport')
-const { User, Subscription } = require('./models')
+const { User, Subscription } = require('../models')
 
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 
-const config = require('./config/config')
+const config = require('./config')
 
 passport.use(
   new JwtStrategy({
