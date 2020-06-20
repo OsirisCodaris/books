@@ -182,9 +182,11 @@ PUT http://localhost:8081/v1/book/22
 }
 ```
 ###### Reponse à la précedente requête
+```json
 {
-    "book": 1
+    "book": 1 
 }
+```
 
 la valeur 1 indique que la requête a été effectuer avec succès en cas d'échec la reponse sera toujours comme celle mentionné plus haut
 
@@ -194,7 +196,9 @@ la valeur 1 indique que la requête a été effectuer avec succès en cas d'éch
 ###### Exemple de requete de suppression de document
 DELETE http://localhost:8081/v1/book/22
 ###### Reponse à la précedente requête
+```json
 {
     "book": 1 
 }
+```
 1 pour confirmé la suppression

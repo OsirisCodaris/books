@@ -12,7 +12,6 @@ function jwtSignUser (user) {
 module.exports = {
   async register (req, res) {
     try {
-      console.log(req.body)
       const fullnameExist = await User.findOne({
         where: {
           fullname: req.body.fullname
@@ -42,13 +41,13 @@ module.exports = {
         }
       })
       if (!user) {
-        return res.status(403).send({
+        return res.status(400).send({
           message: 'Les informations envoyées sont incorrects'
         })
       }
       const isValidPassword = await user.comparePassword(password)
       if (!isValidPassword) {
-        return res.status(403).send({
+        return res.status(400).send({
           message: 'Les informations envoyées sont incorrects'
         })
       }

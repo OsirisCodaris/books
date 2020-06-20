@@ -1,10 +1,10 @@
 const passport = require('passport')
-const { User } = require('./models')
+const { User, Subscription } = require('../models')
 
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 
-const config = require('./config/config')
+const config = require('./config')
 
 passport.use(
   new JwtStrategy({
@@ -15,7 +15,10 @@ passport.use(
       const user = await User.findOne({
         where: {
           id: jwtPayload.id
-        }
+        },
+        include: [
+          { model: Subscription }
+        ]
       })
       if (!user) {
         return done(new Error(), false)
